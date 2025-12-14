@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Relatórios Profissionais | Orçamento → Word</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true">EE</div>
+        <div class="brand__meta">
+          <div class="brand__name">Relatório Pro</div>
+          <div class="brand__tag">Orçamento / Itens → Word</div>
+        </div>
+      </div>
+
+      <nav class="topbar__nav">
+        <a href="#inicio">Início</a>
+        <a href="#produto">Produto</a>
+        <a href="#app">App</a>
+      </nav>
+
+      <button class="btn btn--primary" id="goApp">Usar agora</button>
+    </div>
+  </header>
+
+
+  <main id="inicio" class="container">
+    <section class="hero">
+      <div class="hero__left">
+        <span class="chip">Sem instalação • Funciona offline • JS puro</span>
+        <h1>Gere um relatório <span class="grad">bonito e profissional</span> no Word em segundos.</h1>
+        <p class="lead">
+          Modelo pronto (TIPO, QNT, VALOR, TOTAL), moeda automática em R$, colagem de bloco,
+          total por tipo e salvamento automático no navegador.
+        </p>
+
+        <div class="hero__cta">
+          <button class="btn btn--primary" id="goApp2">Abrir App</button>
+          <button class="btn" id="demoFill">Preencher exemplo</button>
+        </div>
+
+        <div class="hero__bullets">
+          <div class="bullet">
+            <div class="bullet__dot"></div>
+            <div>
+              <b>Validações</b><br />
+              Quantidade e valor com regra, avisos e bloqueios.
+            </div>
+          </div>
+          <div class="bullet">
+            <div class="bullet__dot"></div>
+            <div>
+              <b>Identidade visual</b><br />
+              Logo/cores do cliente aplicadas no Word.
+            </div>
+          </div>
+          <div class="bullet">
+            <div class="bullet__dot"></div>
+            <div>
+              <b>Treinamento rápido</b><br />
+              Interface simples e fluxo guiado.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="preview">
+          <div class="preview__top">
+            <div class="preview__pill">Exportação Word</div>
+            <div class="preview__pill">Resumo por tipo</div>
+            <div class="preview__pill">R$ automático</div>
+          </div>
+          <div class="preview__card">
+            <div class="preview__title">Relatório de Itens</div>
+            <div class="preview__mini">
+              <div class="minirow"><span>Cliente:</span><b>ACME</b></div>
+              <div class="minirow"><span>Projeto:</span><b>Reforma</b></div>
+              <div class="minirow"><span>Data:</span><b>hoje</b></div>
+            </div>
+            <div class="preview__table">
+              <div class="pt__head">
+                <span>TIPO</span><span>QNT</span><span>VALOR</span><span>TOTAL</span>
+              </div>
+              <div class="pt__row">
+                <span>Material</span><span>10</span><span>R$ 12,90</span><span>R$ 129,00</span>
+              </div>
+              <div class="pt__row zebra">
+                <span>Serviço</span><span>2</span><span>R$ 450,00</span><span>R$ 900,00</span>
+              </div>
+              <div class="pt__foot">
+                <span>Total geral</span><b>R$ 1.029,00</b>
+              </div>
+            </div>
+          </div>
+          <div class="preview__note">Visual semelhante ao documento gerado no Word.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="produto" class="section">
+      <h2>O que este site entrega</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Campos extras</h3>
+          <p>Cliente, CNPJ, projeto, responsável, data, observações e condições.</p>
+        </div>
+        <div class="card">
+          <h3>Planilha prática</h3>
+          <p>TIPO/QNT/VALOR/TOTAL com total automático e linha infinita.</p>
+        </div>
+        <div class="card">
+          <h3>Relatório Word</h3>
+          <p>Tabela com design premium, resumo por tipo e total geral.</p>
+        </div>
+        <div class="card">
+          <h3>Autosave</h3>
+          <p>Sem perder trabalho: salva no navegador automaticamente.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="app" class="section">
+      <div class="appShell">
+        <div class="appShell__header">
+          <div>
+            <h2 class="appTitle">App — Gerador de Relatório</h2>
+            <div class="muted">Preencha. Cole blocos. Exporte para Word.</div>
+          </div>
+          <div class="appShell__actions">
+            <button class="btn" id="exportWord">Exportar Word</button>
+            <button class="btn btn--danger" id="clearAll">Limpar</button>
+          </div>
+        </div>
+
+        <div class="appGrid">
+
+          <div class="panel">
+            <div class="panel__title">Dados do documento</div>
+
+            <div class="formGrid">
+              <label class="field">
+                <span>Título do documento *</span>
+                <input id="docTitle" type="text" placeholder="Ex.: Relatório de Itens" />
+              </label>
+
+              <label class="field">
+                <span>Cliente *</span>
+                <input id="cliente" type="text" placeholder="Ex.: ACME Ltda" />
+              </label>
+
+              <label class="field">
+                <span>CNPJ</span>
+                <input id="cnpj" type="text" placeholder="00.000.000/0000-00" />
+              </label>
+
+              <label class="field">
+                <span>Projeto / Centro de custo</span>
+                <input id="projeto" type="text" placeholder="Ex.: Reforma" />
+              </label>
+
+              <label class="field">
+                <span>Responsável</span>
+                <input id="responsavel" type="text" placeholder="Ex.: Marcos" />
+              </label>
+
+              <label class="field">
+                <span>Data *</span>
+                <input id="dataDoc" type="date" />
+              </label>
+
+              <label class="field field--wide">
+                <span>Observações</span>
+                <textarea id="observacoes" rows="3" placeholder="Regras, prazos, escopo, etc."></textarea>
+              </label>
+
+              <label class="field field--wide">
+                <span>Condições</span>
+                <textarea id="condicoes" rows="2" placeholder="Pagamento, validade, entrega..."></textarea>
+              </label>
+            </div>
+
+            <div class="alert" id="alertBox" hidden></div>
+
+            <div class="panel__foot">
+              <div class="muted" id="autosaveState">Auto-save: —</div>
+              <button class="btn btn--primary" id="validate">Validar</button>
+            </div>
+          </div>
+
+
+          <div class="panel">
+            <div class="panel__title">Itens (TIPO • QNT • VALOR • TOTAL)</div>
+
+            <div class="sheetWrap">
+              <table class="sheet">
+                <thead>
+                  <tr>
+                    <th>TIPO</th>
+                    <th class="r">QNT</th>
+                    <th class="r">VALOR</th>
+                    <th class="r">TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+              </table>
+            </div>
+
+            <div class="stats">
+              <div class="stat">
+                <div class="stat__label">Total geral</div>
+                <div class="stat__value" id="grandTotal">R$ 0,00</div>
+              </div>
+              <div class="stat">
+                <div class="stat__label">Linhas preenchidas</div>
+                <div class="stat__value" id="rowCount">0</div>
+              </div>
+            </div>
+
+            <div class="panel__title" style="margin-top:14px;">Total por tipo</div>
+            <div class="byType" id="byTypeList"></div>
+
+            <div class="muted" style="margin-top:10px;">
+              Dicas: <span class="kbd">Enter</span> desce • <span class="kbd">Tab</span> avança • Cole blocos com <span
+                class="kbd">Ctrl/Cmd+V</span>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="muted">© Relatório Pro — exemplo de entrega “custom para empresa”.</div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
