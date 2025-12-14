@@ -199,16 +199,39 @@
       <td><div class="cell r" contenteditable="false" data-col="total">${brMoney(0)}</div></td>
     `;
 
+    // Melhoria na digitação de preço: Focus = Limpo / Blur = Formatado
+    const valCell = tr.querySelector('[data-col="valor"]');
+
+    valCell.addEventListener("focus", (e) => {
+      // Ao focar, mostra o número puro (ex: "12,90") para facilitar edição
+      const current = parseMoneyInput(e.target.textContent);
+      if (current === 0) {
+        e.target.textContent = "";
+      } else {
+        // Mantém formatação decimal padrão PT-BR para edição (1.234,56) sem o "R$"
+        e.target.textContent = current.toLocaleString("pt-BR", { minimumFractionDigits: 2 });
+      }
+      // Seleciona tudo para facilitar substituição
+      setTimeout(() => {
+        try { document.execCommand('selectAll', false, null); } catch { }
+      }, 10);
+    });
+
+    valCell.addEventListener("blur", (e) => {
+      // Ao sair, formata bonitinho em R$
+      const num = parseMoneyInput(e.target.textContent);
+      e.target.textContent = num ? brMoney(num) : "";
+      recalcRow(tr);
+      ensureLastRowAlwaysExists();
+      recalcAll();
+      scheduleAutosave();
+    });
+
     tr.addEventListener("input", (e) => {
       const col = e.target?.dataset?.col;
       if (!col) return;
 
-      if (col === "valor") {
-        const num = parseMoneyInput(e.target.textContent);
-        e.target.textContent = num ? brMoney(num) : "";
-        placeCaretAtEnd(e.target);
-      }
-
+      // Se for valor, apenas recalcula totais (sem formatar o input do usuário)
       recalcRow(tr);
       ensureLastRowAlwaysExists();
       recalcAll();
@@ -223,11 +246,8 @@
         e.preventDefault();
         handleEnter(tr, col);
       } else if (e.key === "Tab") {
-        e.preventDefault();
-        const cols = ["tipo", "qnt", "valor"];
-        const idx = cols.indexOf(col);
-        const next = cols[(idx + (e.shiftKey ? -1 : 1) + cols.length) % cols.length];
-        focusCell(tr, next);
+        // Deixa o Tab nativo funcionar, mas garante foco no próximo
+        // O CSS user-select já deve cuidar, mas aqui garantimos o fluxo lógico
       }
     });
 
